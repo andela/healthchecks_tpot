@@ -1,4 +1,4 @@
-# healthchecks
+# healthchecks                      [![Build Status](https://travis-ci.org/Muthama-Kahohi/healthchecks_tpot.svg?branch=ch-integrates-travis-ci-135501283)](https://travis-ci.org/Muthama-Kahohi/healthchecks_tpot)  [![Coverage Status](https://coveralls.io/repos/github/Muthama-Kahohi/healthchecks_tpot/badge.svg?branch=ch-integrates-travis-ci-135501283)](https://coveralls.io/github/Muthama-Kahohi/healthchecks_tpot?branch=ch-integrates-travis-ci-135501283)
 
 ![Screenshot of Welcome page](/stuff/screenshots/welcome.png?raw=true "Welcome Page")
 
