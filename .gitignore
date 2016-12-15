@@ -4,6 +4,8 @@ __pycache__/
 hc.sqlite
 hc/local_settings.py
 static-collected
+hc/staticfiles/
 
 .DS_Store
 static/.DS_Store
+*.sublime-*

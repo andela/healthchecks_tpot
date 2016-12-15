@@ -1,4 +1,6 @@
-# healthchecks
+# healthchecks                      
+[![Build Status](https://travis-ci.org/andela/healthchecks_tpot.svg?branch=develop)](https://travis-ci.org/andela/healthchecks_tpot)
+[![Coverage Status](https://coveralls.io/repos/github/andela/healthchecks_tpot/badge.svg?branch=develop)](https://coveralls.io/github/andela/healthchecks_tpot?branch=develop)
 
 ![Screenshot of Welcome page](/stuff/screenshots/welcome.png?raw=true "Welcome Page")
 
