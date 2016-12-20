@@ -75,3 +75,8 @@ body {
 .dialog-body {
     margin: 24px 0;
 }
+
+input[name="report_schedule"] {
+    display: inline-block;
+    margin-left: 18px;
+}

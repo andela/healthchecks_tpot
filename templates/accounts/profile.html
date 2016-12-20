@@ -24,38 +24,42 @@
             <div class="panel-body settings-block">
                 <form method="post">
                     {% csrf_token %}
-                    <h2>Monthly Reports Buble</h2>
+                    <h2>Reports</h2>
                     <label>
                         <input
                             name="reports_allowed"
                             type="checkbox"
                             {% if profile.reports_allowed %} checked {% endif %}>
-                        Each month send me a summary of my checks
+                        Send me a summary of my checks:
                     </label>
-                    <label>
-                        <input
-                            name="report_schedule"
-                            type="radio"
-                            value='daily'
-                            {% if profile.schedule_interval == 1 %} checked {% endif %}>
-                        Daily
-                    </label>
-                    <label>
-                        <input
-                            name="report_schedule"
-                            type="radio"
-                            value='weekly'
-                        {% if profile.schedule_interval == 7 %} checked {% endif %}>
-                        Weekly
-                    </label>
-                    <label>
-                        <input
-                            name="report_schedule"
-                            type="radio"
-                            value='monthly'
-                        {% if profile.schedule_interval == 30 %} checked {% endif %}>
-                        Monthly
-                    </label>
+                    <div class="report-schedule-btn-container">
+                        <label>
+                            <input
+                                name="report_schedule"
+                                type="radio"
+                                value='daily'
+                                {% if profile.schedule_interval == 1 %} checked {% endif %}>
+                            Daily
+                        </label>
+                        <br>
+                        <label>
+                            <input
+                                name="report_schedule"
+                                type="radio"
+                                value='weekly'
+                            {% if profile.schedule_interval == 7 %} checked {% endif %}>
+                            Weekly
+                        </label>
+                        <br>
+                        <label>
+                            <input
+                                name="report_schedule"
+                                type="radio"
+                                value='monthly'
+                            {% if profile.schedule_interval == 30 %} checked {% endif %}>
+                            Monthly
+                        </label>
+                    </div>
                     <button
                         name="update_reports_allowed"
                         type="submit"
