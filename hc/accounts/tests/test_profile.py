@@ -17,9 +17,9 @@ class ProfileTestCase(BaseTestCase):
         # profile.token should be set now
         self.alice.profile.refresh_from_db()
         token = self.alice.profile.token
-        ### Assert that the token is set
+        # Assert that the token is set
 
-        ### Assert that the email was sent and check email content
+        # Assert that the email was sent and check email content
 
     def test_it_sends_report(self):
         check = Check(name="Test Check", user=self.alice)
@@ -27,7 +27,7 @@ class ProfileTestCase(BaseTestCase):
 
         self.alice.profile.send_report()
 
-        ###Assert that the email was sent and check email content
+        # Assert that the email was sent and check email content
 
     def test_it_adds_team_member(self):
         self.client.login(username="alice@example.org", password="password")
@@ -40,11 +40,11 @@ class ProfileTestCase(BaseTestCase):
         for member in self.alice.profile.member_set.all():
             member_emails.add(member.user.email)
 
-        ### Assert the existence of the member emails
+        # Assert the existence of the member emails
 
         self.assertTrue("frank@example.org" in member_emails)
 
-        ###Assert that the email was sent and check email content
+        # Assert that the email was sent and check email content
 
     def test_add_team_member_checks_team_access_allowed_flag(self):
         self.client.login(username="charlie@example.org", password="password")
@@ -107,4 +107,36 @@ class ProfileTestCase(BaseTestCase):
         # Expect only Alice's tags
         self.assertNotContains(r, "bobs-tag.svg")
 
-    ### Test it creates and revokes API key
+    # Test it creates and revokes API key
+    def test_sets_daily_report_schedule(self):
+        self.client.login(username="alice@example.org", password="password")
+
+        form = {"update_reports_allowed": "1", "reports_allowed": True, "report_schedule": 'daily'}
+        response = self.client.post("/accounts/profile/", form)
+        self.assertEqual(response.status_code, 200)
+
+        self.alice.profile.refresh_from_db()
+        schedule = self.alice.profile.schedule_interval
+        self.assertEqual(schedule, 1)
+
+    def test_sets_weekly_report_schedule(self):
+        self.client.login(username="alice@example.org", password="password")
+
+        form = {"update_reports_allowed": "1", "reports_allowed": True, "report_schedule": 'weekly'}
+        response = self.client.post("/accounts/profile/", form)
+        self.assertEqual(response.status_code, 200)
+
+        self.alice.profile.refresh_from_db()
+        schedule = self.alice.profile.schedule_interval
+        self.assertEqual(schedule, 7)
+
+    def test_sets_monthly_report_schedule(self):
+        self.client.login(username="alice@example.org", password="password")
+
+        form = {"update_reports_allowed": "1", "reports_allowed": True, "report_schedule": 'monthly'}
+        response = self.client.post("/accounts/profile/", form)
+        self.assertEqual(response.status_code, 200)
+
+        self.alice.profile.refresh_from_db()
+        schedule = self.alice.profile.schedule_interval
+        self.assertEqual(schedule, 30)
